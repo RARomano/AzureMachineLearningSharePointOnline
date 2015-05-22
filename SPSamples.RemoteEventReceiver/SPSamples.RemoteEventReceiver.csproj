@@ -22,6 +22,7 @@
     <WorkflowPartId>{0e98ecb2-9c67-4bd2-86e4-e71ed3f7db3c}</WorkflowPartId>
     <CspkgPartId>{ce99cdf8-0b65-4829-8c35-65e661225cb8}</CspkgPartId>
     <SqlPackagePartId>{e2eca007-3735-42dc-89a8-df9484790b96}</SqlPackagePartId>
+    <ActivePublishProfile>testerer</ActivePublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,12 @@
     <Content Include="AppIcon.png">
       <OpcRelationship>manifest-icon</OpcRelationship>
     </Content>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <AppManifestFile Include="AppManifest.xml">
@@ -65,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{9c66a91b-69da-436a-b2bf-30f5d96341e4}</FeatureId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{f1fbef86-7cec-4509-b552-e21b61b2cc9f}</PackageId>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

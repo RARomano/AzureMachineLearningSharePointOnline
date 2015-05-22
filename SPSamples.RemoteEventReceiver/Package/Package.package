@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f3b10243-8bcb-45af-9bfe-93c8cc6aa175" solutionId="f3b10243-8bcb-45af-9bfe-93c8cc6aa175" resetWebServer="false" sharePointProductVersion="16.0" name="SPSamples.RemoteEventReceiver" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="9c66a91b-69da-436a-b2bf-30f5d96341e4" />
+  </features>
+</package>

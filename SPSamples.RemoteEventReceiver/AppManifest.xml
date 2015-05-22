@@ -3,15 +3,19 @@
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="SPSamplesRemoteEventReceiver"
      ProductID="{74918c0c-78f2-44d5-9214-58a3774c0ae1}"
-     Version="1.0.0.0"
+     Version="1.0.0.1"
      SharePointMinVersion="16.0.0.0"
 >
   <Properties>
     <Title>SPSamples.RemoteEventReceiver</Title>
     <StartPage>~remoteAppUrl/?{StandardTokens}</StartPage>
+    <InstalledEventEndpoint>https://testerer.azurewebsites.net/Services/AppEventReceiver.svc</InstalledEventEndpoint>
   </Properties>
 
   <AppPrincipal>
     <RemoteWebApplication ClientId="*" />
   </AppPrincipal>
+  <AppPermissionRequests>
+    <AppPermissionRequest Scope="http://sharepoint/content/tenant" Right="FullControl" />
+  </AppPermissionRequests>
 </App>

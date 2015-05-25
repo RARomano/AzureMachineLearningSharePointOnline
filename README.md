@@ -1,5 +1,5 @@
-# RemoteEventReceiver
-Esse exemplo mostra como criar uma Provider-Hosted App com Remote Event Receivers 
+# AzureMachineLearningSharePointOnline
+Esse exemplo mostra como utilizar o Projeto Oxford para categorizar imagens no SharePoint
 
 Para rodar esse exemplo você precisará:
 - Visual Studio 2013
@@ -79,6 +79,45 @@ Faça o upload do App no SharePoint
 
 Para esse ambiente funcionar, crie uma Picture Library chamada Pictures e adicione uma coluna do tipo Texto com o nome de Categoria.
 
-Dessa forma, ao fazer o upload de uma imagem, o campo Categoria será preenchido com o valor TESTE automaticamente.
 
-![Result](https://cloud.githubusercontent.com/assets/12012898/7780906/ab870ba6-00bb-11e5-9b65-82291c767ba0.png)
+### Instalar Computer Vision APIs no seu Azure Subscription
+
+Clique em **New**, **Compute** e depois em **Marketplace**.
+
+![MarketPlace](https://cloud.githubusercontent.com/assets/12012898/7801729/d4dc1852-02ff-11e5-9a1a-162955971375.png)
+
+Escolha Computer Vision APIs.
+
+![Choose API](https://cloud.githubusercontent.com/assets/12012898/7801742/097fa4f2-0300-11e5-97dc-63f6d44e2b66.png)
+
+Escolha um nome.
+
+![Choose API](https://cloud.githubusercontent.com/assets/12012898/7801745/13396a8c-0300-11e5-8e2f-2bbffb945ead.png)
+
+Confirme a compra
+
+![compra](https://cloud.githubusercontent.com/assets/12012898/7801804/bf04f714-0300-11e5-9b2c-71fea7148dcb.png)
+
+Depois de pronto, clique me Manage
+
+![Manage](https://cloud.githubusercontent.com/assets/12012898/7801818/e8a162e2-0300-11e5-809a-679da17afdf7.png)
+
+No item Primary key, clique em show e anote essa key. Utilizaremos essa key para chamar a API.
+
+![Manage](https://cloud.githubusercontent.com/assets/12012898/7801833/2bc3a6a2-0301-11e5-95c6-34ac73aeeba7.png)
+
+
+### Alterar o Web.Config do Projeto MVC
+
+Abra o Web.Config e altera a tag com a propriedade **Subscription** com o valor obtido na etapa anterior
+
+### Colocar a biblioteca Newtonsoft.Json do Projeto MVC para copiar localmente
+
+![Manage](https://cloud.githubusercontent.com/assets/12012898/7802357/3fa918b0-030a-11e5-90a8-bc7ea0b2afa8.png)
+
+
+Dessa forma, ao fazer o upload de uma imagem, o campo Categoria será preenchido com o valor extraído do serviço automaticamente.
+
+![Result](https://cloud.githubusercontent.com/assets/12012898/7802371/7eface46-030a-11e5-847c-59684114f96b.png)
+
+

@@ -5,6 +5,9 @@ using System.Text;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.EventReceivers;
 using System.ServiceModel;
+using System.Net.Http;
+using System.Web.Configuration;
+using SPSamples.RemoteEventReceiverWeb.Models;
 
 namespace SPSamples.RemoteEventReceiverWeb.Services
 {
@@ -45,9 +48,32 @@ namespace SPSamples.RemoteEventReceiverWeb.Services
                 var web = clientContext.Web;
                 var list = web.Lists.GetById(properties.ItemEventProperties.ListId);
                 var item = list.GetItemById(properties.ItemEventProperties.ListItemId);
-                item["Categoria"] = "TESTE";
-                item.Update();
+                clientContext.Load(item, a => a.File);
                 clientContext.ExecuteQuery();
+
+                var file = web.GetFileById(item.File.UniqueId);
+                var content = file.OpenBinaryStream();
+                clientContext.Load(file);
+                clientContext.ExecuteQuery();
+
+                var subscription = WebConfigurationManager.AppSettings["Subscription"];
+
+                var client = new HttpClient();
+                var uri = "https://api.projectoxford.ai/vision/v1/analyses?subscription-key=" + subscription;
+
+                var streamContent = new StreamContent(content.Value);
+                streamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+                var result = client.PostAsync(uri, streamContent).Result;
+                var parsedResult = Newtonsoft.Json.JsonConvert.DeserializeObject<JSONResult>(result.Content.ReadAsStringAsync().Result);
+
+                var categoria = parsedResult.Categorias.FirstOrDefault();
+                if (categoria != null)
+                {
+                    item["Categoria"] = categoria.Name;
+                    item.Update();
+                    clientContext.ExecuteQuery();
+                }
             }
         }
 
